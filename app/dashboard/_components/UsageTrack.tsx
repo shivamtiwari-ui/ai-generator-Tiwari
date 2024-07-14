@@ -124,7 +124,6 @@
 
 // // export default UsageTrack;
 
-
 "use client";
 import { Button } from '@/components/ui/button';
 import { db } from '@/utils/db';
@@ -144,6 +143,8 @@ function UsageTrack() {
     }, [user]);
 
     const GetData = async () => {
+        if (!user) return; // Early return if user is null or undefined
+
         const userIdentifier = user.fullName || user.primaryEmailAddress?.emailAddress || '';
         
         const result = await db.select().from(AIOutput).where(
@@ -187,5 +188,6 @@ function UsageTrack() {
 }
 
 export default UsageTrack;
+
 
 
