@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: nextjs-app
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://api.example.com
+      # Add any other environment variables your application needs here
