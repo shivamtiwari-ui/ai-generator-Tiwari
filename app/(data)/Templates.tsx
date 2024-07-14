@@ -1,4 +1,16 @@
-const Templates = [
+
+// src/app/(data)/Templates.ts
+export interface TEMPLATE {
+    name: string;
+    desc: string;
+    category: string;
+    icon: string;
+    aiPrompt: string;
+    slug?: string;
+    form: Array<{ label: string; field: string; name: string; required?: boolean }>;
+  }
+
+const Templates: TEMPLATE[]= [
     {
         name: 'Blog Title',
         desc: 'An AI tool that generates blog titles based on your blog information',

@@ -16,7 +16,7 @@
 // export default TemplateCard;
 
 import React from 'react';
-import { TEMPLATE } from './TemplateListSection';
+import { TEMPLATE } from '@/app/(data)/Templates';
 import Image from 'next/image';
 import Link from 'next/link';
 
