@@ -16,7 +16,9 @@ function Billing() {
           <li>One week of download and copy content</li>
           <li>One week of history</li>
         </ul>
-        <Button variant="primary" className='bg-primary text-white'>Start Free Trial</Button>
+        <Button variant="primary" className='bg-primary text-white'>
+          Start Free Trial
+        </Button>
       </div>
 
       {/* Monthly Subscription Section */}
@@ -29,7 +31,9 @@ function Billing() {
           <li>Download and copy content</li>
           <li>History</li>
         </ul>
-        <Button variant="primary" className='bg-primary text-white'>Subscribe Now</Button>
+        <Button variant="primary" className='bg-primary text-white'>
+          Subscribe Now
+        </Button>
       </div>
     </div>
   );
