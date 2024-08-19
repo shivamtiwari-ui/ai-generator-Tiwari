@@ -124,6 +124,71 @@
 
 // // export default UsageTrack;
 
+// "use client";
+// import { Button } from '@/components/ui/button';
+// import { db } from '@/utils/db';
+// import { AIOutput } from '@/utils/schema';
+// import { useUser } from '@clerk/nextjs';
+// import { eq } from 'drizzle-orm';
+// import React, { useEffect, useState } from 'react';
+
+// function UsageTrack() {
+//     const { user } = useUser();
+//     const [totalUsage, setTotalUsage] = useState(0);
+
+//     useEffect(() => {
+//         if (user) {
+//             GetData();
+//         }
+//     }, [user]);
+
+//     const GetData = async () => {
+//         if (!user) return; // Early return if user is null or undefined
+
+//         const userIdentifier = user.fullName || user.primaryEmailAddress?.emailAddress || '';
+        
+//         const result = await db.select().from(AIOutput).where(
+//             eq(AIOutput.createdBy, userIdentifier)
+//         );
+
+//         console.log("Data fetched:", result);
+//         if (result.length > 0) {
+//             GetTotalUsage(result);
+//         } else {
+//             console.log("No data found for the current user.");
+//         }
+//     };
+
+//     const GetTotalUsage = (history: any[]) => {
+//         let total = 0;
+//         history.forEach(element => {
+//             total += Number(element.aiResponse?.length);
+//         });
+//         setTotalUsage(total);
+//         console.log("Total usage calculated:", total);
+//     };
+
+//     return (
+//         <div className='m-5'>
+//             <div className='bg-primary text-white p-3 rounded-lg'>
+//                 <h2 className='font-medium'>Credits</h2>
+//                 <div className='h-2 bg-[#9981f9] rounded-full mt-3'>
+//                     <div
+//                         className='h-2 bg-white rounded-full'
+//                         style={{
+//                             // width: `${(totalUsage / 10000) * 100}%`
+//                         }}
+//                     ></div>
+//                 </div>
+//                 <h2 className='text-sm my-2'>{totalUsage}/10,000 credits used</h2>
+//             </div>
+//             <Button variant={'secondary'} className='w-full my-3 text-primary'>Upgrade</Button>
+//         </div>
+//     );
+// }
+
+// export default UsageTrack;
+
 "use client";
 import { Button } from '@/components/ui/button';
 import { db } from '@/utils/db';
@@ -166,6 +231,13 @@ function UsageTrack() {
         });
         setTotalUsage(total);
         console.log("Total usage calculated:", total);
+
+        // Check if total usage exceeds 10,000 credits
+        if (total >= 10000) {
+            alert("Your credits are all used up. Please purchase a subscription plan to continue.");
+            // You could also redirect the user to the billing page here if desired
+            // router.push('/dashboard/billing');
+        }
     };
 
     return (
@@ -182,12 +254,19 @@ function UsageTrack() {
                 </div>
                 <h2 className='text-sm my-2'>{totalUsage}/10,000 credits used</h2>
             </div>
-            <Button variant={'secondary'} className='w-full my-3 text-primary'>Upgrade</Button>
+            <Button 
+                variant={'secondary'} 
+                className='w-full my-3 text-primary' 
+                disabled={totalUsage >= 10000}
+            >
+                Upgrade
+            </Button>
         </div>
     );
 }
 
 export default UsageTrack;
+
 
 
 

@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: my-app
-    env: node
-    buildCommand: "npm install && npm run build"
-    startCommand: "npm start"
-    plan: "starter"
-    port: 3000  # Ensure this matches your app's default port
